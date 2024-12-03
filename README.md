@@ -92,3 +92,64 @@ Scenario: Delete a holiday by its ID.
 Given: A holiday with ID 1 exists in the repository.
 When: service.deleteHoliday(1L) is invoked.
 Then: The service should call the repository's deleteById(1L) method exactly once to remove the holiday.
+Scenario: Maven Configuration for a Spring Boot Project
+Use Case: Manage federal holidays in a database-driven Spring Boot application with RESTful services, batch processing, and OpenAPI documentation.
+Key Details
+Parent Project:
+
+The project inherits configuration from spring-boot-starter-parent version 3.4.0. This simplifies dependency management by aligning with Spring Boot's BOM (Bill of Materials).
+**Project Metadata:**
+
+Group ID: com.hcl
+Artifact ID: federalHolidays
+Version: 0.0.1-SNAPSHOT
+Description: Specifies that the project is designed for managing federal holidays.
+Java Version:
+
+The project is configured to use Java 17 via <java.version> property.
+Dependencies:
+
+**Core Spring Boot Dependencies:**
+spring-boot-starter-data-jpa: Enables JPA for database operations.
+spring-boot-starter-web: Provides RESTful web service capabilities.
+spring-boot-starter-batch: Adds Spring Batch support for batch processing.
+**Testing and Development:**
+spring-boot-starter-test: Adds testing libraries like JUnit and Mockito.
+spring-batch-test: Provides utilities for testing Spring Batch jobs.
+spring-boot-devtools: Enables hot-reloading during development.
+Database Connectivity:
+mysql-connector-java: Supports MySQL database interactions (version 8.0.33).
+**Utility Libraries:**
+lombok: Reduces boilerplate code with annotations (e.g., @Getter, @Setter).
+API Documentation:
+springdoc-openapi-starter-webmvc-ui: Generates OpenAPI documentation with a Swagger UI.
+All dependencies are chosen for compatibility with Spring Boot 3.x.
+**Build Configuration:**
+
+Uses the spring-boot-maven-plugin for building and running the application.
+Excludes lombok in the build configuration to avoid shipping it in production.
+Scenario Testing
+Given:
+A developer sets up a new Spring Boot project using the provided POM file.
+When:
+The project is built and run with Maven using commands like mvn clean install or mvn spring-boot:run.
+Then:
+**Dependency Management:**
+All required dependencies for web services, batch processing, JPA, and testing should be resolved.
+Database Connectivity:
+The application should be able to connect to a MySQL database via the specified driver.
+**Batch Processing:**
+The Spring Batch module should be initialized for job execution and testing.
+Hot Reload:
+Developers should experience faster iteration times with spring-boot-devtools.
+**API Documentation:**
+A Swagger UI should be available for testing and documenting REST APIs.
+Potential Improvements
+**Additional Profiles:**
+Define separate profiles (e.g., dev, prod) for environment-specific configurations.
+License and Developer Information:
+Add meaningful <license> and <developer> tags for project metadata.
+Dependency Version Management:
+Use properties for versions to maintain consistency (e.g., <mysql.version>8.0.33</mysql.version>).
+**Plugins:**
+Add plugins for code quality checks (e.g., maven-checkstyle-plugin) and static analysis (e.g., spotbugs-maven-plugin).
